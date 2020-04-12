@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --verbose",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
@@ -22,6 +22,8 @@
   "homepage": "https://github.com/ende76/fullstackopen-part4#readme",
   "devDependencies": {
     "eslint": "^6.8.0",
+    "jest": "^25.3.0",
+    "lodash": "^4.17.15",
     "nodemon": "^2.0.3"
   },
   "dependencies": {
@@ -30,5 +32,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.7",
     "morgan": "^1.10.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
