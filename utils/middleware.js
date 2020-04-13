@@ -18,7 +18,7 @@ const unknownEndpoint = (_req, res) => {
 };
 
 const errorHandler = (error, req, res, next) => {
-    logger.error(error.name, error.message);
+    logger.error('error handler: ', `>${error.name}<`, error.message);
 
     switch (error.name) {
     case 'ValidationError':

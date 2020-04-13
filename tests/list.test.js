@@ -97,7 +97,6 @@ describe('favorite blog', () => {
             likes: 2,
             __v: 0
         },
-
     ];
 
     test('of empty list should be null', () => {

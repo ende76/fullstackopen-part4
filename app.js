@@ -4,7 +4,12 @@ const logger = require('./utils/logger');
 
 logger.info('MongoDB connecting');
 mongoose
-    .connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(config.MONGODB_URI, {
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
     .then(() => logger.info('MongoDB connection established'))
     .catch(() => {
         logger.error('MongoDB connection failed');
@@ -12,6 +17,7 @@ mongoose
     });
 
 const express = require('express');
+require('express-async-errors');
 const app = express();
 const cors = require('cors');
 const middleware = require('./utils/middleware');
