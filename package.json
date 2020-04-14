@@ -8,8 +8,10 @@
     "start": "NODE_ENV=production node index.js",
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
-  },
+    "lint:fix": "eslint --fix .",
+    "deploy": "git push heroku master",
+    "logs:prod": "heroku logs --tail"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ende76/fullstackopen-part4.git"
