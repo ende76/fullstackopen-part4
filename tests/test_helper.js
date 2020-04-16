@@ -1,4 +1,7 @@
 const Blog = require('../models/blog');
+const User = require('../models/user');
+
+const jwt = require('jsonwebtoken');
 
 const initialBlogs = [
     {
@@ -21,8 +24,9 @@ const initialBlogs = [
     },
 ];
 
-const nonExistingId = async () => {
-    const blog = new Blog({ title: 'willremovethissoon' });
+const nonExistingBlogId = async () => {
+    const user = await User.findOne({});
+    const blog = new Blog({ title: 'To Be Removed', author: 'To Be Removed', url: 'To Be Removed', user: user.id.toString() });
     await blog.save();
     await blog.remove();
 
@@ -31,9 +35,29 @@ const nonExistingId = async () => {
 
 const blogsInDb = async () => {
     const blogs = await Blog.find({});
-    return blogs.map(blog => blog.toJSON());
+    return blogs
+        .map(blog => blog.toJSON())
+        .map(blog => {return { ...blog, user: blog.user.toString() };});
 };
 
+const usersInDb = async () => {
+    const users = await User.find({});
+    return users.map(user => user.toJSON());
+};
+
+const oneUserInDb = async (params) => {
+    const user = await User.findOne(params || { username: 'root' });
+
+    return user.toJSON();
+};
+
+const getTokenFor = user => jwt.sign(user, process.env.SECRET);
+
 module.exports = {
-    initialBlogs, nonExistingId, blogsInDb
+    initialBlogs,
+    nonExistingBlogId,
+    blogsInDb,
+    usersInDb,
+    oneUserInDb,
+    getTokenFor
 };
