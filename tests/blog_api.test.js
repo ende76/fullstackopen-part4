@@ -196,8 +196,6 @@ describe('for existing, stored blogs', () => {
 
             const userBlogIds = userAtEnd.blogs.map(blog => blog.toString());
 
-            console.log('++++', userBlogIds);
-
             expect(userBlogIds).not.toContain(blogToDelete.id.toString());
         });
 
